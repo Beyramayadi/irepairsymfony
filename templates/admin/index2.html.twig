@@ -359,30 +359,30 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="{{ path('base') }}">
+            <a class="nav-link" href="../../index.html">
               <i class="mdi mdi-grid-large menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item nav-category">Gestion</li>
-          <li class="nav-item ">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+          <li class="nav-item active">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="true" aria-controls="ui-basic">
               <i class="menu-icon mdi mdi-floor-plan"></i>
               <span class="menu-title">Gestion</span>
               <i class="menu-arrow"></i> 
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Comptes</a></li>
+                <li class="nav-item"> <a class="nav-link active" href="pages/ui-features/dropdowns.html">Comptes</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Réclamations</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Services</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Catégories</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Matériel</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Factures</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ path('adddevis') }}">Devis</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ path('addrdv') }}">Rendez-vous</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Poles</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Stock</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Devis</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Rendez-vous</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ path('addpole') }}">Poles</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ path('addstock') }}">Stock</a></li>
               </ul>
             </div>
           </li>
@@ -395,7 +395,7 @@
             </a>
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
-                
+                <li class="nav-item"><a class="nav-link" href="../../pages/forms/basic_elements.html">Basic Elements</a></li>
               </ul>
             </div>
           </li>
@@ -425,10 +425,10 @@
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Catégories</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Matériel</a></li>
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Factures</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ path('displaydevis') }}">Devis</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ path('displayrdv') }}">Rendez-vous</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Poles</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Stock</a></li>
+                <li class="nav-item"> <a class="nav-link" href="">Devis</a></li>
+                <li class="nav-item"> <a class="nav-link" href="">Rendez-vous</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ path('listPole') }}">Poles</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ path('listStock') }}">Stock</a></li>
               </ul>
             </div>
           </li>

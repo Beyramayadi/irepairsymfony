@@ -2,93 +2,92 @@
 
 namespace App\Entity;
 
-use App\Repository\RendezvousRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
-
 
 /**
- * @ORM\Entity(repositoryClass=RendezvousRepository::class)
+ * Rendezvous
+ *
+ * @ORM\Table(name="rendezvous", indexes={@ORM\Index(name="id_devis_fk", columns={"id_devis"}), @ORM\Index(name="Id_Client", columns={"Id_Client"})})
+ * @ORM\Entity
  */
 class Rendezvous
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id_rdv;
-
-    /**
-     * @ORM\Column(type="date")
-     * @Assert\GreaterThan("today",message="La date doit etre suppérieur a celle d'aujourd'hui.")
-     */
-    private $date_rdv;
-
-    /**
-     * @ORM\ManyToOne(TargetEntity="Devis")
-     * @Assert\NotBlank(message="Ce champ est obligatoire")
-     * @Assert\Type(
-     *     type="integer",
-     *     message="La valeur n'est  valide."
-     * )
-     * @ORM\Column(type="integer")
+     * @var int
      *
-     * 
-
+     * @ORM\Column(name="id_rdv", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id_devis;
+    private $idRdv;
 
     /**
-     * @Assert\NotBlank(message="Ce champ est obligatoire")
-     * @Assert\Type(
-     *     type="integer",
-     *     message="La valeur n'est pas valide."
-     * )
-     * @ORM\Column(type="integer")
-     * 
-     * 
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_rdv", type="date", nullable=false)
      */
-    private $id_client;
+    private $dateRdv;
 
-    public function getIdrdv(): ?int
+    /**
+     * @var \Devis
+     *
+     * @ORM\ManyToOne(targetEntity="Devis")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_devis", referencedColumnName="id_devis")
+     * })
+     */
+    private $idDevis;
+
+    /**
+     * @var \Compte
+     *
+     * @ORM\ManyToOne(targetEntity="Compte")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Client", referencedColumnName="Id_Client")
+     * })
+     */
+    private $idClient;
+
+    public function getIdRdv(): ?int
     {
-        return $this->id_rdv;
+        return $this->idRdv;
     }
 
     public function getDateRdv(): ?\DateTimeInterface
     {
-        return $this->date_rdv;
+        return $this->dateRdv;
     }
 
-    public function setDateRdv(\DateTimeInterface $date_rdv): self
+    public function setDateRdv(\DateTimeInterface $dateRdv): self
     {
-        $this->date_rdv = $date_rdv;
+        $this->dateRdv = $dateRdv;
 
         return $this;
     }
 
-    public function getIdDevis(): ?int
+    public function getIdDevis(): ?Devis
     {
-        return $this->id_devis;
+        return $this->idDevis;
     }
 
-    public function setIdDevis(int $id_devis): self
+    public function setIdDevis(?Devis $idDevis): self
     {
-        $this->id_devis = $id_devis;
+        $this->idDevis = $idDevis;
 
         return $this;
     }
 
-    public function getIdClient(): ?int
+    public function getIdClient(): ?Compte
     {
-        return $this->id_client;
+        return $this->idClient;
     }
 
-    public function setIdClient(int $id_client): self
+    public function setIdClient(?Compte $idClient): self
     {
-        $this->id_client = $id_client;
+        $this->idClient = $idClient;
 
         return $this;
     }
+
+
 }

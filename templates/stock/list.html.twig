@@ -1,0 +1,50 @@
+
+
+{% extends 'admin/index2.html.twig' %}
+
+{% block title %}affichage!{% endblock %}
+{% block crud %}
+
+            <div class="card">
+            <div class="card-body">
+            <h4 class="card-title">Liste des devis</h4>
+              <div class="table-responsive">
+            <table class="table">
+                    <thead>
+                    <tr>     <td>Id</td>
+        <td>nomArticle</td>
+        <td>quantiteArticle</td>
+        <td>prixArticle</td>
+        <td>nomPole</td>
+       
+        <td>suppression</td>
+        <td>modification</td>
+                       
+                    </tr>
+                    </thead>
+                    <tbody>
+                {% for Stock in tabclass %}
+                        <tr>
+                           <td>{{  Stock.idArticle}}</td>
+        <td>{{ Stock.nomArticle }}</td>
+        <td>{{ Stock.quantiteArticle }}</td>
+        <td>{{ Stock.prixArticle }}</td>
+        <td>{{ Stock.idPole }}</td>
+                               
+                                <td>
+                                <a class="btn btn-success" href="{{ path('suppStock',{'id':Stock.idArticle}) }}">Supprimer</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="{{ path('updateStock',{'id':Stock.idArticle}) }}">Modifier</a>
+                            </td>
+                           
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                </div>
+                </div>
+                </div>
+{% endblock %}

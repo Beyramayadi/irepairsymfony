@@ -2,87 +2,89 @@
 
 namespace App\Entity;
 
-use App\Repository\DevisRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=DevisRepository::class)
+ * Devis
+ *
+ * @ORM\Table(name="devis", indexes={@ORM\Index(name="Id_Client", columns={"Id_Client"})})
+ * @ORM\Entity
  */
 class Devis
 {
     /**
+     * @var int
+     *
+     * @ORM\Column(name="id_devis", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id_devis;
+    private $idDevis;
 
     /**
-     * @Assert\NotBlank(message="Ce champ est obligatoire")
-     * @Assert\Type(
-     *     type="float",
-     *     message="La valeur n'est pas valide."
-     * )
-     * @ORM\Column(type="float")
+     * @var int
+     *
+     * @ORM\Column(name="prix", type="integer", nullable=false)
      */
     private $prix;
 
     /**
-     * @Assert\NotBlank(message="Ce champ est obligatoire")
-     * @Assert\Type(
-     *     type="integer",
-     *     message="La valeur n'est pas valide"
-     * )
-     * @ORM\Column(type="integer")
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_devis", type="date", nullable=false)
      */
-    private $Id_Client;
+    private $dateDevis;
 
     /**
-     * @ORM\Column(type="date")
-     * @Assert\NotBlank(message="date is required")
-     * @Assert\LessThan("today",message="La date doit etre inferieure a celle d'aujourd'hui.")
+     * @var \Compte
+     *
+     * @ORM\ManyToOne(targetEntity="Compte")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Client", referencedColumnName="Id_Client")
+     * })
      */
-    private $date_devis;
+    private $idClient;
 
-    public function getIddevis(): ?int
+    public function getIdDevis(): ?int
     {
-        return $this->id_devis;
+        return $this->idDevis;
     }
 
-    public function getPrix(): ?float
+    public function getPrix(): ?int
     {
         return $this->prix;
     }
 
-    public function setPrix(float $prix): self
+    public function setPrix(int $prix): self
     {
         $this->prix = $prix;
 
         return $this;
     }
 
-    public function getIdClient(): ?int
-    {
-        return $this->Id_Client;
-    }
-
-    public function setIdClient(int $Id_Client): self
-    {
-        $this->Id_Client = $Id_Client;
-
-        return $this;
-    }
-
     public function getDateDevis(): ?\DateTimeInterface
     {
-        return $this->date_devis;
+        return $this->dateDevis;
     }
 
-    public function setDateDevis(\DateTimeInterface $date_devis): self
+    public function setDateDevis(\DateTimeInterface $dateDevis): self
     {
-        $this->date_devis = $date_devis;
+        $this->dateDevis = $dateDevis;
 
         return $this;
     }
+
+    public function getIdClient(): ?Compte
+    {
+        return $this->idClient;
+    }
+
+    public function setIdClient(?Compte $idClient): self
+    {
+        $this->idClient = $idClient;
+
+        return $this;
+    }
+
+
 }
