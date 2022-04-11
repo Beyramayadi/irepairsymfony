@@ -1,0 +1,30 @@
+<h1>List Reclamation</h1>
+
+{% if tabclass is empty %}
+<h4>Pas de classe</h4>
+{% else %}
+<table border="1">
+    <tr>
+        <td>Id_reclam</td>
+        <td>Reclamation</td>
+        <td>Date_reclamation</td>
+        <td>id_client</td>
+        
+    </tr>
+
+
+{% for reclamation in tabclass %}
+    <tr>
+        <td>{{ reclamation.id}}</td>
+        <td>{{ reclamation.reclamation|upper }}</td>
+        <td>{{ reclamation.datereclamation|date('Y-m-d')}}</td>
+        <td>{{ reclamation.idclient}}</td>
+        <td><a href="#">Show</a>
+         <a href="{{ path('suppReclamation',{'id':reclamation.id}) }}">Delete</a>
+        <a href="{{ path('updateReclamation',{'id':reclamation.id}) }}">Edit</a></td>
+            
+    </tr>
+{% endfor %}
+</table>
+{% endif %}
+Nb de classe: {{ tabclass|length }}

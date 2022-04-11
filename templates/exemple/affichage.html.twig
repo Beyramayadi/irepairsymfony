@@ -1,0 +1,25 @@
+<h1>List Personne</h1>
+
+{% if tabclass is empty %}
+<h4>Pas de classe</h4>
+{% else %}
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Nom</td>
+        <td>Prenom</td>
+        <td>Tel</td>
+    </tr>
+
+
+{% for personne in tabclass %}
+    <tr>
+        <td>{{  personne.Id}}</td>
+        <td>{{ personne.Nom|upper }}</td>
+        <td>{{ personne.Prenom }}</td>
+        <td>{{ personne.Tel }}</td>
+        
+{% endfor %}
+</table>
+{% endif %}
+Nb de classe: {{ tabclass|length }}

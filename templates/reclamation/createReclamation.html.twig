@@ -1,0 +1,39 @@
+{% extends 'admin/index2.html.twig' %}
+{% block crud %}
+
+<div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+              {{ form_start(f,{attr:{novalidate:'novalidate'}}) }}
+                <div class="card-body">
+                  <h4 class="card-title">Ajouter une Reclamation</h4>
+                  <p class="card-description">
+                   
+                  </p>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="exampleInputUsername1">Id reclam</label>
+                       {{ form_widget(f.Id_reclam,{'attr':{'class':'form-control','placeholder': 'Id reclam'}}) }}
+                       {{ form_errors(f.Id_reclam,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputUsername1">Reclamation</label>
+                       {{ form_widget(f.Reclamation,{'attr':{'class':'form-control','placeholder': 'Reclamation'}}) }}
+                       {{ form_errors(f.Reclamation,{'attr':{'class':'text-danger'}}) }}
+                    </div><div class="form-group">
+                      <label for="exampleInputUsername1">Date reclamation</label>
+                       {{ form_widget(f.Date_reclamation,{'attr':{'class':'form-control','placeholder': 'Date_reclamation'}}) }}
+                       {{ form_errors(f.Date_reclamation,{'attr':{'class':'text-danger'}}) }}
+                    </div><div class="form-group">
+                      <label for="exampleInputUsername1">id client</label>
+                       {{ form_widget(f.id_client,{'attr':{'class':'form-control','placeholder': 'id cient'}}) }}
+                       {{ form_errors(f.id_client,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+                   
+                    
+{{ form_end(f)}}
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            {% endblock %}
