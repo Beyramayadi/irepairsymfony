@@ -19,7 +19,97 @@ class DevisController extends AbstractController
     public function base(): Response
     {
        
+        return $this->render('admin/index.html.twig');
+    }
+
+    /**
+     * @Route("/front", name="front")
+     */
+    public function front(): Response
+    {
+       
         return $this->render('front/index.html.twig');
+    }
+    /**
+     * @Route("/fronti", name="dv")
+     */
+    public function frontdev(): Response
+    {
+       
+        return $this->render('devis/ajoutDevis.html.twig');
+    }
+
+     /**
+     * @Route("/devisordi")
+     */
+    public function devisordi(): Response
+    {
+       
+        return $this->render('devis/devispossibles/ordinateurs.html.twig');
+    }
+     /**
+     * @Route("/devispc")
+     */
+    public function devispc(): Response
+    {
+       
+        return $this->render('devis/devispossibles/pc.html.twig');
+    }
+     /**
+     * @Route("/devistab")
+     */
+    public function devistab(): Response
+    {
+       
+        return $this->render('devis/devispossibles/tab.html.twig');
+    }
+     /**
+     * @Route("/devisbafles")
+     */
+    public function devisbafles(): Response
+    {
+       
+        return $this->render('devis/devispossibles/bafles.html.twig');
+    }
+     /**
+     * @Route("/devisconn")
+     */
+    public function devisconn(): Response
+    {
+       
+        return $this->render('devis/devispossibles/conn.html.twig');
+    }
+     /**
+     * @Route("/devisdd")
+     */
+    public function devisdd(): Response
+    {
+       
+        return $this->render('devis/devispossibles/dd.html.twig');
+    }
+     /**
+     * @Route("/devisram")
+     */
+    public function devisram(): Response
+    {
+       
+        return $this->render('devis/devispossibles/ram.html.twig');
+    }
+     /**
+     * @Route("/devisbatterie")
+     */
+    public function devisbatterie(): Response
+    {
+       
+        return $this->render('devis/devispossibles/batterie.html.twig');
+    }
+     /**
+     * @Route("/devislecteur")
+     */
+    public function devislecteur(): Response
+    {
+       
+        return $this->render('devis/devispossibles/lecteur.html.twig');
     }
     /**
      * @Route("/displaydevis", name="displaydevis")
