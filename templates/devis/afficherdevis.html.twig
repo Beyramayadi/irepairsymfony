@@ -1,0 +1,48 @@
+{% extends 'front/index2.html.twig' %}
+
+{% block title %}affichage!{% endblock %}
+{% block crud %}
+
+            <div class="card" style="text-align: center;background: #f7f7f7; ">
+            <div class="card-body">
+            <h1 >Liste des devis</h1>
+              <div class="table-responsive">
+              {% if d is empty %}
+    <h4>Pas de devis</h4>
+{% else %}
+            <table class="table">
+                    <thead>
+                    <tr>     <th>id devis</th>
+                        <th>prix</th>
+                        <th>id client</th>
+                        <th>date</th>
+                         <th>Modification</th>
+                          <th>Supression</th>
+                       
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for devis in d %}
+                        <tr>
+                            <td>{{ devis.Iddevis }}</td>
+                            <td>{{ devis.prix }}</td>
+                            <td>{{ devis.IdClient }}</td>
+                               <td>{{ devis.datedevis|date("m/d/Y") }}</td>
+                                <td>
+                                <a class="btn btn-success" href="{{ path('rdvv',{'id':devis.Iddevis}) }}">Modifier</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="{{ path('supprdevis',{'id':devis.Iddevis}) }}">Supprimer</a>
+                            </td>
+                           
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                {% endif %}
+                </div>
+                </div>
+                </div>
+{% endblock %}

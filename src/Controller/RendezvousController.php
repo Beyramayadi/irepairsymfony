@@ -21,6 +21,44 @@ class RendezvousController extends AbstractController
             'r'=>$rendezvous
         ]);
     }
+    /**
+     * @Route("/fairerdv/{id}" , name="rdvv")
+     */
+    public function fairerdv(Request $request,int $id): Response
+    {
+       
+        $rendezvous = new rendezvous();
+        $rendezvous->setIdClient(1);
+        $rendezvous->setIdDevis($id);
+       
+        
+        $form = $this->createForm(RendezvousType::class,$rendezvous);
+
+        $form->handleRequest($request);
+
+        
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($rendezvous);//Add
+            $em->flush();
+
+            return $this->redirectToRoute('displayrdv');
+        }
+
+        return $this->render('rendezvous/fairerdv.html.twig',['f'=>$form->createView()]);
+
+        
+        
+
+        
+
+        
+
+       
+    }
+    
+
+
     
      /**
      * @Route("/addrendezvous", name="addrdv")

@@ -1,12 +1,12 @@
 {% extends 'front/index2.html.twig' %}
 {% block crud %}
 
- <div id="main-div" class="products" style="display:block ">
+ <div id="main-div" class="products" style="display:block;margin-top:0px; ">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>Que voulez-vous réparer ?</h2>
+                  <div id="#mark" class="titlepage">
+                     <h2  style="max-width:600px;">Que voulez-vous réparer ?</h2>
                   </div>
                </div>
             </div>
@@ -16,7 +16,7 @@
                      <div class="row">
                         <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a href="#" id="but1">
+                            <a href="#mark" id="but1">
                               <figure><img src="images/thr.png" alt="#"/></figure>
                               <h3>Ordinateurs</h3>
                                     </a>
@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a href="#" id="but2">
+                            <a href="#mark" id="but2">
                               <figure><img src="images/thr1.png" alt="#"/></figure>
                               <h3>Télévision</h3>
                                 </a>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a id="but3">
+                            <a href="#mark" id="but3">
                               <figure><img src="images/thr2.png" alt="#"/></figure>
                               <h3>Smartphone</h3>
                                 </a>
@@ -51,12 +51,12 @@
 
 
 
-    <div id="div1" class="products" style="display:none ">
+    <div id="div1" class="products" style="display:none;margin-top:0px; ">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Quel composant voulez-vous réparer ?</h2>
+                     <h2 style="max-width:600px;">Quel composant voulez-vous réparer ?</h2>
                   </div>
                </div>
             </div>
@@ -66,54 +66,60 @@
                      <div class="row">
                         <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a  >
+                            <a  href="{{ path('fairedevis',{'prix':30}) }}">
                               <figure><img src="images/product1.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Clavier</h3>
+                              <h5>30 DT</h5>
                                     </a>
                            </div>
                         </div>
                         <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a >
+                            <a href="{{ path('fairedevis',{'prix':35}) }}">
                               <figure><img src="images/product2.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Souris</h3>
+                              <h5>35 DT</h5>
                                 </a>
                            </div>
                         </div>
                         <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a >
+                            <a href="{{ path('fairedevis',{'prix':170}) }}">
                               <figure><img src="https://www.pngkey.com/png/full/492-4924910_mac-transparent-image-blank-computer-screen.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Ecran</h3>
+                              <h5>170 DT</h5>
                                 </a>
                            </div>
                         </div>
                         <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a >
+                            <a href="{{ path('fairedevis',{'prix':180}) }}">
                               <figure><img src="images/product8.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Batterie</h3>
+                              <h5>180 DT</h5>
                                 </a>
                            </div>
                         </div>
                         <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a >
+                            <a href="{{ path('fairedevis',{'prix':370}) }}">
                               <figure><img src="https://www.pngmart.com/files/7/Graphics-Card-Transparent-PNG.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Carte Graphique</h3>
+                              <h5>370 DT</h5>
                                 </a>
                            </div>
                         </div>
                         <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a >
+                            <a href="{{ path('fairedevis',{'prix':210}) }}">
                               <figure><img src="images/product7.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Rammes</h3>
+                              <h5>210 DT</h5>
                                 </a>
                            </div>
                         </div>
                          <div id="restart" class="col-md-12">
-                           <a class="read_more" href="#">Recommencer</a>
+                           <a class="read_more" href="#mark">Recommencer</a>
                         </div>
                        
                       
@@ -127,12 +133,12 @@
       
 
 
- <div id="div2" class="products" style="display:none ">
+ <div id="div2" class="products" style="display:none;margin-top:0px; ">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Voulez-vous prendre un diagnostic personalisé?</h2>
+                     <h2 style="max-width:600px;">Voulez-vous prendre un diagnostic personalisé?</h2>
                   </div>
                </div>
             </div>
@@ -145,14 +151,15 @@
                        <div  class="col-md-12">
                         <div >
                            <div class="product_box">
-                            <a >
+                            <a href="{{ path('fairedevis',{'prix':60}) }}">
                               <figure><img src="https://www.pngall.com/wp-content/uploads/4/Settings-PNG-Photo.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Faire un diagnostic</h3>
+                              <h5>60 DT</h5>
                                 </a>
                            </div>
                         </div>
                          
-                           <a class="read_more" id="restart1" href="#">Recommencer</a>
+                           <a class="read_more" id="restart1" href="#mark">Recommencer</a>
                         </div>
                        
                       
@@ -165,12 +172,12 @@
 </div>  
 
       
-<div id="div3" class="products" style="display:none ">
+<div id="div3" class="products" style="display:none;margin-top:0px; ">
          <div class="container">
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Quel composant du smartphone voulez-vous réparer?</h2>
+                     <h2 style="max-width:600px;">Quel composant du smartphone voulez-vous réparer?</h2>
                   </div>
                </div>
             </div>
@@ -181,46 +188,87 @@
                         
                     <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a  >
+                            <a  href="{{ path('fairedevis',{'prix':270}) }}">
                               <figure><img src="https://statics.trustit.tn/categories/1589644829862.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Afficheur Original</h3>
+                              <h5>270 DT</h5>
                                     </a>
                            </div>
                         </div>
                          <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a  >
+                            <a  href="{{ path('fairedevis',{'prix':95}) }}">
                               <figure><img src="https://statics.trustit.tn/categories/1589644833677.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Vitre</h3>
+                              <h5>95 DT</h5>
                                     </a>
                            </div>
                         </div>
                          <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a  >
+                            <a  href="{{ path('fairedevis',{'prix':105}) }}">
                               <figure><img src="https://statics.trustit.tn/categories/1589644839908.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Circuit WIFI</h3>
+                              <h5>105 DT</h5>
                                     </a>
                            </div>
                         </div>
                          <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a  >
+                            <a href="{{ path('fairedevis',{'prix':80}) }}" >
                               <figure><img src="https://statics.trustit.tn/categories/1589644841048.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Circuit Son</h3>
+                              <h5>80 DT</h5>
                                     </a>
                            </div>
                         </div>
                          <div class="col-md-4 margin_bottom1">
                            <div class="product_box">
-                            <a  >
+                            <a href="{{ path('fairedevis',{'prix':130}) }}" >
                               <figure><img src="https://statics.trustit.tn/categories/1589644834836.png" style="width:118px;height:102px;" alt="#"/></figure>
                               <h3>Face ID</h3>
+                              <h5>130 DT</h5>
+                                    </a>
+                           </div>
+                        </div>
+                        <div class="col-md-4 margin_bottom1">
+                           <div class="product_box">
+                            <a href="{{ path('fairedevis',{'prix':180}) }}" >
+                              <figure><img src="https://statics.trustit.tn/categories/1599483433355.jpg" style="width:118px;height:102px;" alt="#"/></figure>
+                              <h3>Batterie</h3>
+                              <h5>180 DT</h5>
+                                    </a>
+                           </div>
+                        </div>
+                        <div class="col-md-4 margin_bottom1">
+                           <div class="product_box">
+                            <a href="{{ path('fairedevis',{'prix':55}) }}" >
+                              <figure><img src="https://statics.trustit.tn/categories/1589644851335.png" style="width:118px;height:102px;" alt="#"/></figure>
+                              <h3>Désoxydation</h3>
+                              <h5>55 DT</h5>
+                                    </a>
+                           </div>
+                        </div>
+                        <div class="col-md-4 margin_bottom1">
+                           <div class="product_box">
+                            <a href="{{ path('fairedevis',{'prix':200}) }}" >
+                              <figure><img src="https://statics.trustit.tn/categories/1627311949207" style="width:118px;height:102px;" alt="#"/></figure>
+                              <h3>Vitre arrière</h3>
+                              <h5>200 DT</h5>
+                                    </a>
+                           </div>
+                        </div>
+                        <div class="col-md-4 margin_bottom1">
+                           <div class="product_box">
+                            <a href="{{ path('fairedevis',{'prix':40}) }}" >
+                              <figure><img src="https://www.pngall.com/wp-content/uploads/4/Settings-PNG-Photo.png" style="width:118px;height:102px;" alt="#"/></figure>
+                              <h3>Diagnostic</h3>
+                              <h5>40 DT</h5>
                                     </a>
                            </div>
                         </div>
                          <div id="restart2" class="col-md-12">
-                           <a class="read_more" href="#">Recommencer</a>
+                           <a class="read_more" href="#mark">Recommencer</a>
                         </div>
                        
                       
@@ -229,8 +277,11 @@
                </div>
             </div>
          </div>
-</div>  
-
+</div> 
+<center> 
+ <div id="restart2" class="col-md-12" style="padding-bottom:50px;background: #f7f7f7; ">
+                           <a class="read_more" href="/afficherdevis">Consulter les devis réalisés</a>
+                        </div></center>
 
 
 
@@ -246,19 +297,19 @@ var maindiv = document.getElementById("main-div");
          var div3 = document.getElementById("div3");
 
       restart.onclick = function(){
-            maindiv.setAttribute("style","display:block;");
+            maindiv.setAttribute("style","display:block;margin-top:0px;");
             div1.setAttribute("style","display:none;");
             div2.setAttribute("style","display:none;");
             div3.setAttribute("style","display:none;");
       }
       restart1.onclick = function(){
-            maindiv.setAttribute("style","display:block;");
+            maindiv.setAttribute("style","display:block;margin-top:0px;");
             div1.setAttribute("style","display:none;");
             div2.setAttribute("style","display:none;");
             div3.setAttribute("style","display:none;");
       }
       restart2.onclick = function(){
-            maindiv.setAttribute("style","display:block;");
+            maindiv.setAttribute("style","display:block;margin-top:0px;");
             div1.setAttribute("style","display:none;");
             div2.setAttribute("style","display:none;");
             div3.setAttribute("style","display:none;");
@@ -272,16 +323,16 @@ var maindiv = document.getElementById("main-div");
 
 but1.onclick = function(){
             maindiv.setAttribute("style","display:none;");
-            div1.setAttribute("style","display:block;");
+            div1.setAttribute("style","display:block;margin-top:0px;");
 }
 but2.onclick = function(){
             maindiv.setAttribute("style","display:none;");
-            div2.setAttribute("style","display:block;");
+            div2.setAttribute("style","display:block;margin-top:0px;");
 }
 
 but3.onclick = function(){
             maindiv.setAttribute("style","display:none;");
-             div3.setAttribute("style","display:block;");
+             div3.setAttribute("style","display:block;margin-top:0px;");
 }
 
 

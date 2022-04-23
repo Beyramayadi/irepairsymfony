@@ -13,6 +13,54 @@ class DevisController extends AbstractController
 {
 
 
+     /**
+     * @Route("/fairedevis/{prix}" , name="fairedevis")
+     */
+    public function fairedevis(Request $request,float $prix): Response
+    {
+       
+        $devis = new devis();
+        $devis->setPrix($prix);
+        $date = new \DateTime('now');
+        $devis->setDateDevis($date);
+        $devis->setIdClient(1);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($devis);//Add
+        $em->flush();
+
+        return $this->redirectToRoute('afficherdevis');
+
+       
+    }
+     /**
+     * @Route("/afficherdevis", name="afficherdevis")
+     */
+    public function afficherdevis(): Response
+    {
+        $devis = $this->getDoctrine()->getManager()->getRepository(Devis::class)->findBy(
+            
+            ['Id_Client' => 1],
+           
+        );
+        return $this->render('devis/afficherdevis.html.twig', [
+            'd'=>$devis
+        ]);
+    }
+     /**
+     * @Route("/supprimerdevis/{id}", name="supprdevis")
+     */
+    public function remdevis(Devis  $devis): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($devis);
+        $em->flush();
+
+        return $this->redirectToRoute('afficherdevis');
+
+
+    }
+
     /**
      * @Route("/", name="base")
      */
@@ -39,78 +87,8 @@ class DevisController extends AbstractController
         return $this->render('devis/ajoutDevis.html.twig');
     }
 
-     /**
-     * @Route("/devisordi")
-     */
-    public function devisordi(): Response
-    {
-       
-        return $this->render('devis/devispossibles/ordinateurs.html.twig');
-    }
-     /**
-     * @Route("/devispc")
-     */
-    public function devispc(): Response
-    {
-       
-        return $this->render('devis/devispossibles/pc.html.twig');
-    }
-     /**
-     * @Route("/devistab")
-     */
-    public function devistab(): Response
-    {
-       
-        return $this->render('devis/devispossibles/tab.html.twig');
-    }
-     /**
-     * @Route("/devisbafles")
-     */
-    public function devisbafles(): Response
-    {
-       
-        return $this->render('devis/devispossibles/bafles.html.twig');
-    }
-     /**
-     * @Route("/devisconn")
-     */
-    public function devisconn(): Response
-    {
-       
-        return $this->render('devis/devispossibles/conn.html.twig');
-    }
-     /**
-     * @Route("/devisdd")
-     */
-    public function devisdd(): Response
-    {
-       
-        return $this->render('devis/devispossibles/dd.html.twig');
-    }
-     /**
-     * @Route("/devisram")
-     */
-    public function devisram(): Response
-    {
-       
-        return $this->render('devis/devispossibles/ram.html.twig');
-    }
-     /**
-     * @Route("/devisbatterie")
-     */
-    public function devisbatterie(): Response
-    {
-       
-        return $this->render('devis/devispossibles/batterie.html.twig');
-    }
-     /**
-     * @Route("/devislecteur")
-     */
-    public function devislecteur(): Response
-    {
-       
-        return $this->render('devis/devispossibles/lecteur.html.twig');
-    }
+    
+    
     /**
      * @Route("/displaydevis", name="displaydevis")
      */
