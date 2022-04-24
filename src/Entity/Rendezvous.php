@@ -21,12 +21,12 @@ class Rendezvous
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\GreaterThan("today",message="La date doit etre suppérieur a celle d'aujourd'hui.")
+     * @Assert\GreaterThan("today + 5 days",message="Choisissez une date dans 5 jours minimum")
      */
     private $date_rdv;
 
     /**
-     * @ORM\ManyToOne(TargetEntity="Devis")
+     * 
      * @Assert\NotBlank(message="Ce champ est obligatoire")
      * @Assert\Type(
      *     type="integer",

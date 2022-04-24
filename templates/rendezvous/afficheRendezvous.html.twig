@@ -1,0 +1,48 @@
+{% extends 'front/index2.html.twig' %}
+
+{% block title %}affichage!{% endblock %}
+{% block crud %}
+
+            <div class="card" style="text-align: center;background: #f7f7f7; ">
+            <div class="card-body">
+            <h4 class="card-title">Liste des Rendez-vous</h4>
+              <div class="table-responsive">
+                {% if r is empty %}
+    <h1>Pas de Rendez-vous</h1>
+{% else %}
+            <table class="table">
+                    <thead>
+                    <tr>     <th>id rendezvous</th>
+                        <th>date du redenzvous</th>
+                        <th>id devis</th>
+                        <th>id du client</th>
+                         
+                          <th>Supression</th>
+                       
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for rendezvous in r %}
+                        <tr>
+                            <td>{{ rendezvous.Idrdv }}</td>
+                            <td>{{ rendezvous.daterdv |date("m/d/Y")}}</td>
+                            <td>{{ rendezvous.Iddevis }}</td>
+                               <td>{{ rendezvous.IdClient }}</td>
+                               
+                            <td>
+                                <a class="btn btn-danger" href="{{ path('suprdv',{'id':rendezvous.Idrdv}) }}">Supprimer</a>
+                            </td>
+                           
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                   <div style="padding-left: 50%;">   {{ knp_pagination_render(r)}} </div>
+                                {% endif %}
+
+                </div>
+                </div>
+                </div>
+{% endblock %}

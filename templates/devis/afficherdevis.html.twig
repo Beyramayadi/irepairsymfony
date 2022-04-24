@@ -3,6 +3,8 @@
 {% block title %}affichage!{% endblock %}
 {% block crud %}
 
+
+{{ form(searchForm) }}
             <div class="card" style="text-align: center;background: #f7f7f7; ">
             <div class="card-body">
             <h1 >Liste des devis</h1>
@@ -16,7 +18,7 @@
                         <th>prix</th>
                         <th>id client</th>
                         <th>date</th>
-                         <th>Modification</th>
+                         <th>Prendre un rendez-vous</th>
                           <th>Supression</th>
                        
                     </tr>
@@ -29,7 +31,7 @@
                             <td>{{ devis.IdClient }}</td>
                                <td>{{ devis.datedevis|date("m/d/Y") }}</td>
                                 <td>
-                                <a class="btn btn-success" href="{{ path('rdvv',{'id':devis.Iddevis}) }}">Modifier</a>
+                                <a class="btn btn-success" href="{{ path('rdvv',{'id':devis.Iddevis}) }}">Rendez-vous</a>
                             </td>
                             <td>
                                 <a class="btn btn-danger" href="{{ path('supprdevis',{'id':devis.Iddevis}) }}">Supprimer</a>
@@ -39,8 +41,11 @@
 
                     {% endfor %}
 
+                  
+
                     </tbody>
                 </table>
+               <div style="padding-left: 50%;">   {{ knp_pagination_render(d)}} </div>
                 {% endif %}
                 </div>
                 </div>

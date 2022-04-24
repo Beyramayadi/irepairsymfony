@@ -73,4 +73,12 @@ class DevisRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function searchDevis($nsc)
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.date_devis LIKE :x')
+            ->setParameter('x', '%'.$nsc.'%')
+            ->getQuery()
+            ->execute();
+    }
 }

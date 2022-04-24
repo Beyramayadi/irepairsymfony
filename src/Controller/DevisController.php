@@ -8,6 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
+use App\Form\SearchFormType;
+use App\Repository\DevisRepository;
 
 class DevisController extends AbstractController
 {
@@ -36,16 +39,34 @@ class DevisController extends AbstractController
      /**
      * @Route("/afficherdevis", name="afficherdevis")
      */
-    public function afficherdevis(): Response
+    public function afficherdevis(Request $request, PaginatorInterface $paginator)
     {
-        $devis = $this->getDoctrine()->getManager()->getRepository(Devis::class)->findBy(
+        $data = $this->getDoctrine()->getManager()->getRepository(Devis::class)->findBy(
             
-            ['Id_Client' => 1],
-           
-        );
-        return $this->render('devis/afficherdevis.html.twig', [
-            'd'=>$devis
-        ]);
+            ['Id_Client' => 1]);
+        $devis = $paginator->paginate(
+            $data,
+            $request->query->getInt('page',1),
+            4
+        );   
+        $formSearch= $this->createForm(SearchFormType::class);
+        $formSearch->handleRequest($request);
+
+
+        if($formSearch->isSubmitted()){
+            $ala= $formSearch->getData();
+            $results = $this->getDoctrine()->getRepository(Devis::class)->searchDevis($ala);
+            return $this->render("devis/afficherdevis.html.twig",
+                array("searchForm"=>$formSearch->createView(),
+                    "d"=>$results));
+        }
+
+        
+
+
+        return $this->render("devis/afficherdevis.html.twig",
+                array("searchForm"=>$formSearch->createView(),
+                    "d"=>$devis));
     }
      /**
      * @Route("/supprimerdevis/{id}", name="supprdevis")

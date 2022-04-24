@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Knp\Component\Pager\PaginatorInterface;
 class RendezvousController extends AbstractController
 {
     /**
@@ -18,6 +18,28 @@ class RendezvousController extends AbstractController
     {
         $rendezvous = $this->getDoctrine()->getManager()->getRepository(Rendezvous::class)->findAll();
         return $this->render('rendezvous/displayRendezvous.html.twig', [
+            'r'=>$rendezvous
+        ]);
+    }
+
+     /**
+     * @Route("/afficherdv", name="afficherdv")
+     */
+    public function afficherdv(Request $request, PaginatorInterface $paginator): Response
+    {
+        $data = $this->getDoctrine()->getManager()->getRepository(Rendezvous::class)->findBy(
+            
+            ['id_client' => 1],
+           
+        );
+
+        $rendezvous = $paginator->paginate(
+            $data,
+            $request->query->getInt('page',1),
+            4
+        );    
+
+        return $this->render('rendezvous/afficheRendezvous.html.twig', [
             'r'=>$rendezvous
         ]);
     }
@@ -42,7 +64,7 @@ class RendezvousController extends AbstractController
             $em->persist($rendezvous);//Add
             $em->flush();
 
-            return $this->redirectToRoute('displayrdv');
+            return $this->redirectToRoute('afficherdv');
         }
 
         return $this->render('rendezvous/fairerdv.html.twig',['f'=>$form->createView()]);
@@ -81,6 +103,20 @@ class RendezvousController extends AbstractController
         return $this->render('rendezvous/createRendezvous.html.twig',['d'=>$form->createView()]);
     } 
 
+
+     /**
+     * @Route("/supprimerrdv/{id}", name="suprdv")
+     */
+    public function supprDevis(Rendezvous  $rendezvous): Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($rendezvous);
+        $em->flush();
+
+        return $this->redirectToRoute('afficherdv');
+
+
+    }
      /**
      * @Route("/removerendezvous/{id}", name="supprdv")
      */
