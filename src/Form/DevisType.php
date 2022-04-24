@@ -15,6 +15,7 @@ class DevisType extends AbstractType
             ->add('prix')
             ->add('Id_Client')
             ->add('date_devis')
+            ->add('titre')
             ->add('ajouter',SubmitType::class)
         ;
     }

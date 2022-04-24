@@ -19,7 +19,6 @@ class Devis
     private $id_devis;
 
     /**
-     * @Assert\NotBlank(message="Ce champ est obligatoire")
      * @Assert\Type(
      *     type="float",
      *     message="La valeur n'est pas valide."
@@ -29,7 +28,6 @@ class Devis
     private $prix;
 
     /**
-     * @Assert\NotBlank(message="Ce champ est obligatoire")
      * @Assert\Type(
      *     type="integer",
      *     message="La valeur n'est pas valide"
@@ -40,10 +38,13 @@ class Devis
 
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank(message="date is required")
-     * @Assert\LessThan("today",message="La date doit etre inferieure a celle d'aujourd'hui.")
      */
     private $date_devis;
+
+     /**
+     * @ORM\Column(type="string")
+     */
+    private $titre;
 
     public function getIddevis(): ?int
     {
@@ -85,4 +86,19 @@ class Devis
 
         return $this;
     }
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): self
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+    public function __toString() {
+        return(string) $this->getTitre();
+    }
+
 }

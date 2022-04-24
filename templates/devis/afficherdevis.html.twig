@@ -4,8 +4,18 @@
 {% block crud %}
 
 
-{{ form(searchForm) }}
-            <div class="card" style="text-align: center;background: #f7f7f7; ">
+            <div class="card" style="text-align: center;background: #f7f7f7;padding-top:40px; ">
+            <div style="padding-right:40%;padding-left:40%;">
+                          {{ form_start(searchForm) }}
+                            {{ form_widget(searchForm.titre,{'attr':{'class':'form-control','placeholder': 'Faire une recherche'}}) }}
+<br>
+            {{ form_end(searchForm) }}
+         
+            <form action="/afficherdevis">
+    <input type="submit" value="Actualiser" />
+</form>
+            </div>
+
             <div class="card-body">
             <h1 >Liste des devis</h1>
               <div class="table-responsive">
@@ -18,7 +28,10 @@
                         <th>prix</th>
                         <th>id client</th>
                         <th>date</th>
+                        <th>Titre du Devis</th>
                          <th>Prendre un rendez-vous</th>
+                         
+                         
                           <th>Supression</th>
                        
                     </tr>
@@ -29,7 +42,9 @@
                             <td>{{ devis.Iddevis }}</td>
                             <td>{{ devis.prix }}</td>
                             <td>{{ devis.IdClient }}</td>
+                            
                                <td>{{ devis.datedevis|date("m/d/Y") }}</td>
+                               <td>{{ devis.titre }}</td>
                                 <td>
                                 <a class="btn btn-success" href="{{ path('rdvv',{'id':devis.Iddevis}) }}">Rendez-vous</a>
                             </td>

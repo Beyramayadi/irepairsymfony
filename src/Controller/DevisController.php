@@ -4,12 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Devis;
 use App\Form\DevisType;
+use App\Form\SearchFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
-use App\Form\SearchFormType;
 use App\Repository\DevisRepository;
 
 class DevisController extends AbstractController
@@ -17,13 +17,14 @@ class DevisController extends AbstractController
 
 
      /**
-     * @Route("/fairedevis/{prix}" , name="fairedevis")
+     * @Route("/fairedevis/{prix}/{titre}" , name="fairedevis")
      */
-    public function fairedevis(Request $request,float $prix): Response
+    public function fairedevis(Request $request,float $prix,string $titre): Response
     {
        
         $devis = new devis();
         $devis->setPrix($prix);
+        $devis->setTitre($titre);
         $date = new \DateTime('now');
         $devis->setDateDevis($date);
         $devis->setIdClient(1);
@@ -47,18 +48,25 @@ class DevisController extends AbstractController
         $devis = $paginator->paginate(
             $data,
             $request->query->getInt('page',1),
-            4
+            10
         );   
         $formSearch= $this->createForm(SearchFormType::class);
         $formSearch->handleRequest($request);
 
 
         if($formSearch->isSubmitted()){
-            $ala= $formSearch->getData();
-            $results = $this->getDoctrine()->getRepository(Devis::class)->searchDevis($ala);
+            $titre= $formSearch->getData();
+            $results = $this->getDoctrine()->getRepository(Devis::class)->searchDevis($titre);
+            $res = $paginator->paginate(
+                $results,
+                $request->query->getInt('page',1),
+                10
+            ); 
+
+             
             return $this->render("devis/afficherdevis.html.twig",
                 array("searchForm"=>$formSearch->createView(),
-                    "d"=>$results));
+                    "d"=>$res));
         }
 
         
