@@ -16,6 +16,7 @@
                         <th>date du redenzvous</th>
                         <th>id devis</th>
                         <th>id du client</th>
+                        <th>titre</th>
                          
                           <th>Supression</th>
                        
@@ -28,6 +29,7 @@
                             <td>{{ rendezvous.daterdv |date("m/d/Y")}}</td>
                             <td>{{ rendezvous.Iddevis }}</td>
                                <td>{{ rendezvous.IdClient }}</td>
+                               <td>{{ rendezvous.titrerdv }}</td>
                                
                             <td>
                                 <a class="btn btn-danger" href="{{ path('suprdv',{'id':rendezvous.Idrdv}) }}">Supprimer</a>
@@ -43,6 +45,9 @@
                                 {% endif %}
 
                 </div>
+                <form action="/calendrier">
+    <input type="submit" value="Affichger le calendrier des rendez-vous" />
+</form>
                 </div>
                 </div>
 {% endblock %}

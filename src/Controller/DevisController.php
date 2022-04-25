@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Repository\DevisRepository;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mailer\Mailer;
+
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 
 class DevisController extends AbstractController
 {
@@ -102,8 +107,21 @@ class DevisController extends AbstractController
     /**
      * @Route("/front", name="front")
      */
-    public function front(): Response
+    public function front(MailerInterface $mailer): Response
     {
+        $email = (new Email())
+        ->from('erzafixed@gmail.com')
+        ->to('simbey2000@gmail.com')
+       
+        ->subject('Time for Symfony Mailer!')
+        ->text('Sending emails is fun again!')
+        ->html('<p>See Twig integration for better HTML integration!</p>');
+
+       $dsn=  'smtp://erzafixed@gmail.com:****@gmail';
+       $transport = Transport::fromDsn($dsn);
+
+ $mailer = new Mailer($transport);
+    $mailer->send($email);
        
         return $this->render('front/index.html.twig');
     }

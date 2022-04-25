@@ -49,7 +49,13 @@ class Rendezvous
      * 
      * 
      */
+    
     private $id_client;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $titrerdv;
 
     public function getIdrdv(): ?int
     {
@@ -91,4 +97,19 @@ class Rendezvous
 
         return $this;
     }
+    public function getTitrerdv(): ?string
+    {
+        return $this->titrerdv;
+    }
+
+    public function setTitrerdv(string $titrerdv): self
+    {
+        $this->titrerdv = $titrerdv;
+
+        return $this;
+    }
+    public function __toString() {
+        return(string) $this->getTitrerdv();
+    }
+
 }

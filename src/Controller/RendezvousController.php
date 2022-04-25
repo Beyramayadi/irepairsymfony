@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Repository\RendezvousRepository;
+
+
 class RendezvousController extends AbstractController
 {
     /**
@@ -20,6 +23,36 @@ class RendezvousController extends AbstractController
         return $this->render('rendezvous/displayRendezvous.html.twig', [
             'r'=>$rendezvous
         ]);
+    }
+
+
+      /**
+     * @Route("/calendrier", name="calendrier")
+     */
+    public function calendrier(RendezvousRepository $redv): Response
+    {
+        $rendezvous = $redv->findAll();
+
+        $rdvs = [];
+
+        foreach($rendezvous as $event){
+            $rdvs[] = [
+                'id' => $event->getIdrdv(),
+                'start' => $event->getDateRdv()->format('Y-m-d'),
+                'end' => $event->getDateRdv()->format('Y-m-d'),
+                'title' => $event->getTitrerdv(),
+                
+                 'backgroundColor' => '#C80F0F',
+                 'allDay' => 'true',
+
+            ];
+        }
+        $data = json_encode($rdvs);
+
+
+
+
+        return $this->render('rendezvous/calendrier.html.twig',compact('data'));
     }
 
      /**
@@ -44,14 +77,16 @@ class RendezvousController extends AbstractController
         ]);
     }
     /**
-     * @Route("/fairerdv/{id}" , name="rdvv")
+     * @Route("/fairerdv/{id}/{titrerdv}" , name="rdvv")
      */
-    public function fairerdv(Request $request,int $id): Response
+    public function fairerdv(Request $request,int $id,string $titrerdv): Response
     {
        
         $rendezvous = new rendezvous();
         $rendezvous->setIdClient(1);
         $rendezvous->setIdDevis($id);
+        $rendezvous->setTitrerdv($titrerdv);
+
        
         
         $form = $this->createForm(RendezvousType::class,$rendezvous);
