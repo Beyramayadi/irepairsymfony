@@ -17,12 +17,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 /**
  * Class FormationController
  * @package App\Controller\Admin
- * @Route("/admin/users")
+ * @Route("/admin")
  */
 class UserController extends AbstractController
 {
     /**
-     * @Route("/", name="user_back_index")
+     * @Route("/user", name="user_back_index")
      * @param UserRepository $userRepository
      * @return Response
      */

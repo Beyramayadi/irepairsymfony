@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractController{
     /**
-     * @Route("/",name="admin")
+     * @Route("/home",name="admin")
      */
     public function index():Response
     {
