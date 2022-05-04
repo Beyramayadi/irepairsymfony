@@ -10,15 +10,14 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class DashboardController
  * @package App\Controller\Admin
- * @Route("/admin")
  */
 
 class DashboardController extends AbstractController{
     /**
-     * @Route("/home",name="admin")
+     * @Route("/home",name="admin_home")
      */
     public function index():Response
     {
-        return $this->render('admin/base.html.twig');
+        return $this->render('admin/home.html.twig');
     }
 }

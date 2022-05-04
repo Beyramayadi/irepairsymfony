@@ -14,27 +14,11 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        $errormsg = 0;
+       
         if ($user = $this->getUser()) {
-            if ($user->isBlocked()) {
-                $errormsg = 'User blocker par Admin';
-            } else if (!$user->IsVerified()) {
-                $errormsg = 'Mail pas encour verifier';
-            } else {
-                // if ($user->isVerified()) {
-                // if (in_array('ROLE_ADMIN', $user->getRoles())) {
-                //     return $this->redirectToRoute('admin_home');
-                // }
-                // if (in_array('ROLE_ETUDIANT', $user->getRoles())) {
-                //     return $this->redirectToRoute('etudiant_home');
-                // }
-                // if (in_array('ROLE_RECRUTEUR', $user->getRoles())) {
-                //     return $this->redirectToRoute('recruteur_home');
-                // }
-
-                return $this->redirectToRoute('user_back_index');
-                // }
-            }
+            
+            return $this->render('admin/list.html.twig');
+             
         }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -43,7 +27,7 @@ class SecurityController extends AbstractController
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
-            'errormsg' => $errormsg
+            
         ]);
             // return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
 

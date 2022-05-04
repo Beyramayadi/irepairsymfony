@@ -22,18 +22,6 @@ class ReclamationController extends AbstractController
             'controller_name' => 'ReclamationController',
         ]);
     }
-/**
-     * @Route("/admin", name="display_admin")
-     */
-    public function indexadmin()
-    {
-       
-        return $this->render("admin/index.html.twig");
-    }
-
-
-
-
     /**
      * @Route("/addReclamation", name="display_reclamation")
      */

@@ -6,10 +6,10 @@
 <table border="1">
     <tr>
         <td>Id_Client</td>
-        <td>Nom</td>
+        {# <td>Nom</td>
         <td>Prenom</td>
         <td>Date naissance</td>
-        <td>Tel</td>
+        <td>Tel</td> #}
         <td>Email</td>
     </tr>
 
@@ -17,12 +17,12 @@
 {% for compte in tabclass %}
     <tr>
         <td>{{ compte.id}}</td>
-        <td>{{ compte.nom|upper }}</td>
+        {# <td>{{ compte.nom|upper }}</td>
         <td>{{ compte.prenom }}</td>
         <td>{{ compte.datenaissance|date('Y-m-d')}}</td>
-        <td>{{ compte.tel }}</td>
+        <td>{{ compte.tel }}</td> #}
         <td>{{ compte.email }}</td>
-        <td><a href="#">Show</a>
+        {# <td><a href="#">Show</a> #}
          <a href="{{ path('suppCompte',{'id':compte.id}) }}">Delete</a>
         <a href="{{ path('updateCompte',{'id':compte.id}) }}">Edit</a></td>
             
