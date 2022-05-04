@@ -1,8 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ReclamationController!{% endblock %}
+
 
 {% block body %}
+<div class="card-body">
+                  <h4 class="card-title">Liste des reclamations</h4>
+                  <p class="card-description">
+                    ajouter reclamation <code>.table</code>
+                  </p>
+                  <div class="table-responsive">
+                    {% if tabclass is empty %}
+<h4>Pas de classe</h4>
+{% else %}
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Id_reclam</th>
+                          <th>Reclamation</th>
+                          <th>Date_reclamation</th>
+                          <th>id_client</th>
+                          <th>Modification</th>
+                        <th>Suppression</th>
+                        </tr>
+                     
+                    </table>
+                     {% for reclamation in tabclass %}
+                        <tr>
+                            <td>{{ reclamation.Id_reclam }}</td>
+                            <td>{{ reclamation.Reclamation }}</td>
+                            <td>{{ reclamation.Date_reclamation }}</td>
+                            <td>{{ reclamation.id_client }}</td>
+                            
+                            <td>
+                                <a class="btn btn-danger" href="{{ path('suppReclamation',{'id':reclamation.id}) }}">Supprimer</a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                  </div>
+                </div>
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }

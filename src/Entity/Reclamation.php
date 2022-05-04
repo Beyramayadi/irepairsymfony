@@ -13,17 +13,13 @@ class Reclamation
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $Id_reclam;
-
-    /**
+     * var String
      * @Assert\NotBlank(message=" titre doit etre non vide")
      * @Assert\Length(
      *      min = 5,

@@ -22,12 +22,24 @@ class ReclamationController extends AbstractController
             'controller_name' => 'ReclamationController',
         ]);
     }
+/**
+     * @Route("/admin", name="display_admin")
+     */
+    public function indexadmin()
+    {
+       
+        return $this->render("admin/index.html.twig");
+    }
+
+
+
+
     /**
      * @Route("/addReclamation", name="display_reclamation")
      */
     public function addReclamation(Request $request)
     {
-        
+        $reclamations= $this->getDoctrine()->getRepository(Reclamation::class)->findAll();
         $reclamation= new Reclamation();
         $form = $this->createForm(ReclamationType::class,$reclamation);
         $form->handleRequest($request);
@@ -36,7 +48,7 @@ class ReclamationController extends AbstractController
             $em->persist($reclamation);//ajout
             $em->flush();
 
-            return $this->redirectToRoute('display_reclamation');
+            return $this->render('reclamation/list.html.twig',['f'=>$form->createView(),'tabclass'=>$reclamations]);
 
         }
         return $this->render('reclamation/createReclamation.html.twig',['f'=>$form->createView()]);

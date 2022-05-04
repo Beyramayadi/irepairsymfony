@@ -12,7 +12,7 @@ class ReclamationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('Id_reclam')
+        
         ->add('Reclamation')
         ->add('Date_reclamation')
         ->add('id_client')
