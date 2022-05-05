@@ -15,7 +15,7 @@ class ReclamationType extends AbstractType
         
         ->add('Reclamation')
         ->add('Date_reclamation')
-        ->add('id_client')
+        // ->add('id_client')
         ->add('ajouter',SubmitType::class)
        
         ;

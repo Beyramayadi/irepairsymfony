@@ -33,10 +33,12 @@ class ReclamationController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
+
+            $reclamation->setIdClient($this->getUser()->getId());
             $em->persist($reclamation);//ajout
             $em->flush();
 
-            return $this->render('reclamation/list.html.twig',['f'=>$form->createView(),'tabclass'=>$reclamations]);
+            return $this->redirectToRoute('listReclamation');
 
         }
         return $this->render('reclamation/createReclamation.html.twig',['f'=>$form->createView()]);

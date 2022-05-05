@@ -1,30 +1,48 @@
-<h1>List Reclamation</h1>
+{% extends 'base.html.twig' %}
+{% block body %}
 
 {% if tabclass is empty %}
-<h4>Pas de classe</h4>
+	<h4>Pas de classe</h4>
 {% else %}
-<table border="1">
-    <tr>
-        <td>Id_reclam</td>
-        <td>Reclamation</td>
-        <td>Date_reclamation</td>
-        <td>id_client</td>
-        
-    </tr>
+	<div class="col-lg-6 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Table Reclamation</h4>
 
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>id</th>
+								<th>idclient</th>
+								<th>reclamation</th>
+								<th>datereclamation</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
 
-{% for reclamation in tabclass %}
-    <tr>
-        <td>{{ reclamation.id}}</td>
-        <td>{{ reclamation.reclamation|upper }}</td>
-        <td>{{ reclamation.datereclamation|date('Y-m-d')}}</td>
-        <td>{{ reclamation.idclient}}</td>
-        <td><a href="#">Show</a>
-         <a href="{{ path('suppReclamation',{'id':reclamation.id}) }}">Delete</a>
-        <a href="{{ path('updateReclamation',{'id':reclamation.id}) }}">Edit</a></td>
-            
-    </tr>
-{% endfor %}
-</table>
+							{% for reclamation in tabclass %}
+								<tr>
+									<td>{{ reclamation.id}}</td>
+									<td>{{ reclamation.idclient}}</td>
+									<td>{{ reclamation.reclamation|upper }}</td>
+									<td>{{ reclamation.datereclamation|date('Y-m-d')}}</td>
+									<td>
+										<a href="{{ path('suppReclamation',{'id':reclamation.id}) }}">Delete</a>
+										<a href="{{ path('updateReclamation',{'id':reclamation.id}) }}">Edit</a>
+									</td>
+
+								</tr>
+							{% endfor %}
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endif %}
-Nb de classe: {{ tabclass|length }}
+Nb de classe:
+{{ tabclass|length }}
+{% endblock %}
