@@ -42,6 +42,11 @@ class Reclamation
      */
     private $id_Client;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $Important;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +96,18 @@ class Reclamation
     public function setIdClient(int $id_Client): self
     {
         $this->id_Client = $id_Client;
+
+        return $this;
+    }
+
+    public function getImportant(): ?bool
+    {
+        return $this->Important;
+    }
+
+    public function setImportant(bool $Important): self
+    {
+        $this->Important = $Important;
 
         return $this;
     }

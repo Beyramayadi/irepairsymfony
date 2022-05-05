@@ -111,7 +111,18 @@ class UserController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
+/**
+     * @Route("/Block/{id}", name="block")
+     */
+    public function Block($id)
+    {
+        $User= $this->getDoctrine()->getRepository(User::class)->find($id);
+        $User->setIsBlocked(!$User->IsBlocked());
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($User);
+        $em->flush();
+        return $this->redirectToRoute("user_back_index");
+    }
     /**
      * @Route("/delete/{id}", name="user_back_delete")
      * @param Request $request

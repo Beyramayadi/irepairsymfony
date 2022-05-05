@@ -14,6 +14,7 @@
 							<thead>
 								<tr>
 									<th>id</th>
+									<th>Important</th>
 									<th>idclient</th>
 									<th>reclamation</th>
 									<th>datereclamation</th>
@@ -25,12 +26,21 @@
 								{% for reclamation in tabclass %}
 									<tr>
 										<td>{{ reclamation.id}}</td>
+										<td>
+										{% if reclamation.Important %}
+											<div class="col-sm-6 col-md-4 col-lg-3">
+												<i class="mdi mdi-star"></i>
+												
+											</div>
+										{% endif %}
+										</td>
 										<td>{{ reclamation.idclient}}</td>
 										<td>{{ reclamation.reclamation|upper }}</td>
 										<td>{{ reclamation.datereclamation|date('Y-m-d')}}</td>
 										<td>
 											<a href="{{ path('suppReclamation',{'id':reclamation.id}) }}">Delete</a>
 											<a href="{{ path('updateReclamation',{'id':reclamation.id}) }}">Edit</a>
+											<a href="{{ path('impoReclamation',{'id':reclamation.id}) }}">Important</a>
 										</td>
 
 									</tr>
@@ -44,10 +54,10 @@
 		</div>
 	{% endif %}
 	<div class="template-demo">
-    <a href="/addReclamation" >
-		<button type="button" class="btn btn-primary btn-rounded btn-fw">Ajout Reclamation</button>
-	</a>
-    {{ tabclass|length }}
+		<a href="/addReclamation">
+			<button type="button" class="btn btn-primary btn-rounded btn-fw">Ajout Reclamation</button>
+		</a>
+		{{ tabclass|length }}
 	</div>
 
 {% endblock %}

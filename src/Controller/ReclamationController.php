@@ -63,6 +63,18 @@ class ReclamationController extends AbstractController
         $em->flush();
         return $this->redirectToRoute("listReclamation");
     }
+    /**
+     * @Route("/important/{id}", name="impoReclamation")
+     */
+    public function important($id)
+    {
+        $reclamation= $this->getDoctrine()->getRepository(Reclamation::class)->find($id);
+        $reclamation->setImportant(!$reclamation->getImportant());
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($reclamation);
+        $em->flush();
+        return $this->redirectToRoute("listReclamation");
+    }
      /**
      * @Route("/updateReclamation/{id}", name="updateReclamation")
      */
