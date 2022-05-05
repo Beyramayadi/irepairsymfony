@@ -17,7 +17,7 @@ class SecurityController extends AbstractController
        
         if ($user = $this->getUser()) {
             
-            return $this->render('admin/list.html.twig');
+            return $this->redirectToRoute('user_back_index');
              
         }
         // get the login error if there is one
@@ -32,6 +32,12 @@ class SecurityController extends AbstractController
           
 
     }
-
+ /**
+     * @Route("/logout", name="app_logout")
+     */
+    public function logout(): void
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
    
 }

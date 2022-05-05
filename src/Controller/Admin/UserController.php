@@ -40,7 +40,7 @@ class UserController extends AbstractController
      * @param UserPasswordEncoderInterface $userPasswordEncoder
      * @param EntityManagerInterface $entityManager
      * @return Response
-     * @Security("is_granted('ROLE_ADMIN')")
+    //  * @Security("is_granted('ROLE_ADMIN')")
      */
     public function new(Request $request, UserPasswordEncoderInterface $userPasswordEncoder, EntityManagerInterface $entityManager): Response
     {

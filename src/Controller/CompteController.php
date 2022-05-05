@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class CompteController extends AbstractController
 {
     /**
-     * @Route("/", name="base")
+     * @Route("/haja", name="base")
      */
     public function base(): Response
     {
