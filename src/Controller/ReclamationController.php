@@ -35,6 +35,7 @@ class ReclamationController extends AbstractController
             $em = $this->getDoctrine()->getManager();
 
             $reclamation->setIdClient($this->getUser()->getId());
+            $reclamation->setImportant(0);
             $em->persist($reclamation);//ajout
             $em->flush();
 
@@ -42,6 +43,29 @@ class ReclamationController extends AbstractController
 
         }
         return $this->render('reclamation/createReclamation.html.twig',['f'=>$form->createView()]);
+
+    }
+    /**
+     * @Route("/front/addReclamation", name="frontdisplay_reclamation")
+     */
+    public function frontaddReclamation(Request $request)
+    {
+        $reclamations= $this->getDoctrine()->getRepository(Reclamation::class)->findAll();
+        $reclamation= new Reclamation();
+        $form = $this->createForm(ReclamationType::class,$reclamation);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            $em = $this->getDoctrine()->getManager();
+
+            $reclamation->setIdClient($this->getUser()->getId());
+            $reclamation->setImportant(0);
+            $em->persist($reclamation);//ajout
+            $em->flush();
+
+            return $this->redirectToRoute('listReclamation');
+
+        }
+        return $this->render('reclamation/frontcreateReclamation.html.twig',['f'=>$form->createView()]);
 
     }
      /**

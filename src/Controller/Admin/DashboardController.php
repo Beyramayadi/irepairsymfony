@@ -14,10 +14,19 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractController{
     /**
-     * @Route("/home",name="admin_home")
+     * @Route("/admin/home",name="admin_home")
      */
     public function index():Response
     {
-        return $this->render('admin/home.html.twig');
+        return $this->render('admin/index.html.twig');
+
+        // return $this->render('admin/home.html.twig');
+    }
+    /**
+     * @Route("/front",name="user_home")
+     */
+    public function indexfront():Response
+    {
+        return $this->render('admin/fronthome.html.twig');
     }
 }

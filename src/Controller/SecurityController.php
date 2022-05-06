@@ -14,16 +14,26 @@ class SecurityController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-       
-        if ($user = $this->getUser()) {
-            
-            return $this->redirectToRoute('base');
-             
-        }
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
+        if ($user = $this->getUser()) {
+            if (in_array('ROLE_ADMIN', $user->getRoles())) {
+                return $this->redirectToRoute('admin_home');
+            }
+            if ( $user->IsBlocked()) {
+                $error = "User Blocked By Admin";
+            }
+            else{
+                return $this->redirectToRoute('user_home');
+            }
+            // if (in_array('', $user->getRoles())) {
+            //     return $this->redirectToRoute('');
+            // }
+             
+        }
+       
         return $this->render('security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,

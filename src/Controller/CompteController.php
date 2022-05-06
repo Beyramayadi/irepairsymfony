@@ -14,12 +14,12 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 class CompteController extends AbstractController
 {
     /**
-     * @Route("/haja", name="base")
+     * @Route("/adminhome", name="adminhome")
      */
     public function base(): Response
     {
        
-        return $this->render('admin/index2.html.twig');
+        return $this->render('admin/index.html.twig');
     }
     /**
      * @Route("/compte", name="add_compte")

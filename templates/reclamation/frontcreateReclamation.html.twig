@@ -1,0 +1,33 @@
+{% extends 'frontbase.html.twig' %}
+{% block body %}
+
+	<div class="col-md-6 grid-margin stretch-card">
+		<div class="card">
+			{{ form_start(f,{attr:{novalidate:'novalidate'}}) }}
+			<div class="card-body">
+				<h4 class="card-title">Ajouter une Reclamation</h4>
+				<p class="card-description"></p>
+				<form class="forms-sample">
+
+					<div class="form-group">
+						<label for="exampleInputUsername1">Date reclamation</label>
+						{{ form_widget(f.Date_reclamation,{'attr':{'class':'form-control','placeholder': 'Date_reclamation','type':'date'}}) }}
+						{{ form_errors(f.Date_reclamation,{'attr':{'class':'text-danger'}}) }}
+
+					</div>
+					<div class="form-group">
+						<label class="from-group form-control-lg">Reclamation</label>
+						{{ form_widget(f.Reclamation,{'attr':{'class':'from-control','type':'textarea'}}) }}
+						{{ form_errors(f.Reclamation,{'attr':{'class':'text-danger'}}) }}
+					</div>
+
+
+					{{ form_widget(f.ajouter,{'attr':{'class':'btn btn-primary me-2'}}) }}
+
+					{{ form_end(f)}}
+				</form>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
