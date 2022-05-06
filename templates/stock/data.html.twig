@@ -1,0 +1,64 @@
+{% extends 'admin/index2.html.twig' %}
+
+{% block title %} donné personnelle {% endblock %}
+{% block crud %}
+
+            <div class="card">
+            <div class="card-body">
+            <h4 class="card-title"> donné personnelle</h4>
+        <div calss="col-md-6">  
+          <form action="{{ path('export')}}" method="post">
+             <div class="row">
+             <div calss="col-md-6">
+              <select name="type" required class="form_control ">
+                <option value="">select </option>
+                <option value="xlsx">xlsx </option>
+                <option value="xls">xls</option>
+                <option value="csv">csv</option>
+              </select>
+            
+             <div calss="col-md-6">
+             <button type="submit" name="export_btn" class="btn btn-primary ">export</button>
+             </div>
+           </div>
+          </form>
+        </div>
+
+            <table class="table">
+                    <thead>
+                    <tr>     
+        <td>Id</td>
+        <td>nomArticle</td>
+        <td>quantiteArticle</td>
+        <td>prixArticle</td>
+        <td>nomPole</td>
+      
+        <td>updatedAt</td>
+       
+        
+                       
+                    </tr>
+                    </thead>
+                    <tbody>
+                {% for Stock in tabclass %}
+                        <tr>
+        <td>{{  Stock.idArticle}}</td>
+        <td>{{ Stock.nomArticle }}</td>
+        <td>{{ Stock.quantiteArticle }}</td>
+        <td>{{ Stock.prixArticle }}</td>
+        <td>{{ Stock.idPole }}</td>
+        
+       <td>{{ Stock.updatedAt|date("m/d/Y") }}</td>
+                               
+                               
+                           
+                        </tr>
+
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+                </div>
+                </div>
+                </div>
+{% endblock %}

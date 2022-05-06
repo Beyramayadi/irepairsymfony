@@ -1,0 +1,13 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+       Stock:
+           uri_prefix: /images/Stock
+           upload_destination: '%kernel.project_dir%/public/images/Stock'
+           
+           
+           inject_on_load: false
+           delete_on_update: true
+           delete_on_remove: true
+       
