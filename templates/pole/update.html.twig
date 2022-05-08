@@ -1,0 +1,36 @@
+{% extends 'admin/index2.html.twig' %}
+{% block crud %}
+
+<div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+              {{ form_start(f,{attr:{novalidate:'novalidate'}}) }}
+                <div class="card-body">
+                  <h4 class="card-title">modifier un Pole</h4>
+                  <p class="card-description">
+                   
+                  </p>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="exampleInputUsername1">nom Pole</label>
+                     {{ form_widget(f.nomPole,{'attr':{'class':'form-control','placeholder': 'nom pole'}}) }}
+                     {{ form_errors(f.nomPole,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">lieu pole</label>
+                      {{ form_widget(f.lieuPole,{'attr':{'class':'form-control','placeholder': 'lieu pole'}}) }}
+                       {{ form_errors(f.lieuPole,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+                   
+                    
+                    <div class="form-check form-check-flat form-check-primary">
+                      
+                    </div>
+                   
+                    
+{{ form_end(f)}}
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            {% endblock %}

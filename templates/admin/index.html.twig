@@ -11,7 +11,7 @@
           </button>
         </div>
         <div>
-          <a  href="index.html">
+          <a  href="{{ path('back') }}">
             <img src="images/logo.png" style="width :100px ; height : 80px;" alt="logo" />
           </a>
           <a class="navbar-brand brand-logo-mini" href="index.html">
@@ -381,8 +381,8 @@
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Factures</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ path('adddevis') }}">Devis</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ path('addrdv') }}">Rendez-vous</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Poles</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Stock</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ path('addpole') }}">Poles</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ path('addstock') }}">Stock</a></li>
               </ul>
             </div>
           </li>
@@ -427,8 +427,8 @@
                 <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Factures</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ path('displaydevis') }}">Devis</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ path('displayrdv') }}">Rendez-vous</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Poles</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Stock</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ path('listPole') }}">Poles</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ path('listStock') }}">Stock</a></li>
               </ul>
             </div>
           </li>

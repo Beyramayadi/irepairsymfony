@@ -1,0 +1,69 @@
+
+
+{% extends 'admin/index2.html.twig' %}
+
+{% block title %}affichage!{% endblock %}
+{% block crud %}
+
+            <div class="card">
+            <div class="card-body">
+            <h4 class="card-title">Liste des Stock</h4>
+              <div class="table-responsive">
+            <table class="table">
+                    <thead>
+                    <tr>     <td>Id</td>
+        <td>nomArticle</td>
+        <td>quantiteArticle</td>
+        <td>prixArticle</td>
+        <td>nomPole</td>
+        <td>image_name</td>
+        <td>updatedAt</td>
+       
+        <td>suppression</td>
+        <td>modification</td>
+                       
+                    </tr>
+                    </thead>
+                    <tbody>
+                {% for Stock in tabclass %}
+                     
+        <tr class="{{ ( Stock.quantiteArticle < 5) ? 'bg-danger': ''}}" >
+        <td>{{  Stock.idArticle}}</td>
+        <td>{{ Stock.nomArticle }}</td>
+        <td>{{ Stock.quantiteArticle }}</td>
+        <td>{{ Stock.prixArticle }}</td>
+        <td>{{ Stock.idPole }}</td>
+        <td> <img src="{{ asset('/images/Stock/' ~ Stock.imageName  ~ '') }} " alt="Symfony!"
+              
+             />
+        </td>
+
+       <td>{{ Stock.updatedAt|date() }}</td>
+                               
+                                <td>
+                                <a class="btn btn-success" href="{{ path('suppStock',{'id':Stock.idArticle}) }}">Supprimer</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" href="{{ path('updateStock',{'id':Stock.idArticle}) }}">Modifier</a>
+                            </td>
+                           
+                              
+                            
+                             
+                             
+                            
+                        </tr>
+                         
+
+                    {% endfor %}
+                    <div> 
+                              <a  href="{{ path('up_data') }}" class= "btn btn-success" > voir excel</a>
+                     
+                              <a  href="{{ path('stat') }}" class= "btn btn-success" > voir stat</a>
+                         </div>
+                    </tbody>
+                </table>
+                </div>
+                </div>
+                </div>
+{% endblock %}

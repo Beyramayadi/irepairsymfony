@@ -1,0 +1,51 @@
+{% extends 'admin/index2.html.twig' %}
+{% block crud %}
+
+<div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+              {{ form_start(f,{attr:{novalidate:'novalidate'}}) }}
+                <div class="card-body">
+                  <h4 class="card-title">Ajouter un Stock</h4>
+                  <p class="card-description">
+                   
+                  </p>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="exampleInputUsername1">nom Article</label>
+                       {{ form_widget(f.nomArticle,{'attr':{'class':'form-control','placeholder': 'nomArticle'}}) }}
+                       {{ form_errors(f.nomArticle,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">quantite Article</label>
+                       {{ form_widget(f.quantiteArticle,{'attr':{'class':'form-control','placeholder': 'quantiteArticle'}}) }}
+                       {{ form_errors(f.quantiteArticle,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">prix Article</label>
+                      
+ {{ form_widget(f.prixArticle,{'attr':{'class':'form-control','placeholder': 'prixArticle'}}) }}
+ {{ form_errors(f.prixArticle,{'attr':{'class':'text-danger'}}) }}
+
+                    </div>
+                     <div class="form-group">
+                      <label for="exampleInputUsername1">nom Article</label>
+                       {{ form_widget(f.imageFile,{'attr':{'class':'form-control','placeholder': 'imageFile'}}) }}
+                       {{ form_errors(f.imageFile,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+                    
+                    
+                    <div class="form-check form-check-flat form-check-primary">
+                      
+                    </div>
+                   
+                   
+{{ form_end(f)}}
+ 
+                   
+
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            {% endblock %}

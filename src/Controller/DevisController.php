@@ -16,6 +16,15 @@ use Symfony\Component\Mailer\Mailer;
 
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
+use Symfony\Component\Mime\Address;
+use Symfony\Component\Validator\Constraints\Json;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+ use Symfony\Component\Serializer\Serializer;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 class DevisController extends AbstractController
 {
@@ -96,12 +105,15 @@ class DevisController extends AbstractController
     }
 
     /**
-     * @Route("/", name="base")
+     * @Route("/ko", name="ko")
      */
     public function base(): Response
     {
        
-        return $this->render('admin/index.html.twig');
+        $time = new \DateTime();
+echo $time->format('H:i:s \O\n Y-m-d');
+return $this->render('front/index.html.twig');
+
     }
 
     /**
@@ -109,21 +121,22 @@ class DevisController extends AbstractController
      */
     public function front(MailerInterface $mailer): Response
     {
-        $email = (new Email())
-        ->from('erzafixed@gmail.com')
-        ->to('simbey2000@gmail.com')
+
+        
        
-        ->subject('Time for Symfony Mailer!')
-        ->text('Sending emails is fun again!')
-        ->html('<p>See Twig integration for better HTML integration!</p>');
-
-       $dsn=  'smtp://erzafixed@gmail.com:****@gmail';
-       $transport = Transport::fromDsn($dsn);
-
- $mailer = new Mailer($transport);
-    $mailer->send($email);
        
         return $this->render('front/index.html.twig');
+    }
+    /**
+     * @Route("/back", name="back")
+     */
+    public function back(): Response
+    {
+
+        
+       
+       
+        return $this->render('admin/index.html.twig');
     }
     /**
      * @Route("/fronti", name="dv")
@@ -206,6 +219,106 @@ class DevisController extends AbstractController
 
 
     }
+
+     /******************Ajouter Reclamation*****************************************/
+     /**
+      * @Route("/adddevism", name="add_reclamation")
+      * @Method("POST")
+      */
+
+      public function ajouterReclamationAction(Request $request)
+      {
+          $devis = new devis();
+          $prix = $request->query->get("prix");
+          $titre = $request->query->get("titre");
+          $em = $this->getDoctrine()->getManager();
+          
+ 
+          
+          $devis->setPrix($prix);
+          $devis->setTitre($titre);
+          $date = new \DateTime('now');
+          $devis->setDateDevis($date);
+          $devis->setIdClient(1);
+ 
+          $em->persist($devis);
+          $em->flush();
+          $serializer = new Serializer([new ObjectNormalizer()]);
+          $formatted = $serializer->normalize($devis);
+          return new JsonResponse($formatted);
+ 
+      }
+ 
+      /******************Supprimer Reclamation*****************************************/
+ 
+      /**
+       * @Route("/deletedevism", name="delete_reclamation")
+       * @Method("DELETE")
+       */
+ 
+      public function deleteReclamationAction(Request $request) {
+          $id = $request->get("id_devis");
+ 
+          $em = $this->getDoctrine()->getManager();
+          $devis = $em->getRepository(Devis::class)->find($id);
+          if($devis!=null ) {
+              $em->remove($devis);
+              $em->flush();
+ 
+              $serialize = new Serializer([new ObjectNormalizer()]);
+              $formatted = $serialize->normalize("devis a ete supprimee avec success.");
+              return new JsonResponse($formatted);
+ 
+          }
+          return new JsonResponse("id devis invalide.");
+ 
+ 
+      }
+ 
+     /******************Modifier Reclamation*****************************************/
+     /**
+      * @Route("/updatedevism", name="update_reclamation")
+      * @Method("PUT")
+      */
+     public function modifierReclamationAction(Request $request) {
+         $em = $this->getDoctrine()->getManager();
+         $devis = $this->getDoctrine()->getManager()
+                         ->getRepository(Devis::class)
+                         ->find($request->get("id_devis"));
+ 
+         $devis->setPrix($request->get("prix"));
+         $devis->setTitre($request->get("titre"));
+         $devis->setIdClient($request->get("id_client"));
+ 
+         $em->persist($devis);
+         $em->flush();
+         $serializer = new Serializer([new ObjectNormalizer()]);
+         $formatted = $serializer->normalize($devis);
+         return new JsonResponse("devis a ete modifiee avec success.");
+ 
+     }
+ 
+ 
+ 
+     /******************affichage Reclamation*****************************************/
+ 
+      /**
+       * @Route("/displaydevism", name="display_reclamation")
+       */
+      public function allRecAction()
+      {
+ 
+          $devis = $this->getDoctrine()->getManager()->getRepository(Devis::class)->findAll();
+          $serializer = new Serializer([new ObjectNormalizer()]);
+          $formatted = $serializer->normalize($devis);
+ 
+          return new JsonResponse($formatted);
+ 
+      }
+ 
+
+
+
 
 
 
