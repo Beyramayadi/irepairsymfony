@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Controller;
-use App\Entity\Compte;
-use App\Form\CompteType;
-use App\Repository\CompteRepository;
+use App\Entity\User;
+use App\Form\UserType;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,12 +22,12 @@ class CompteController extends AbstractController
         return $this->render('admin/index.html.twig');
     }
     /**
-     * @Route("/compte", name="add_compte")
+     * @Route("/user", name="add_user")
      */
     public function index(): Response
     {
-        return $this->render('compte/index.html.twig', [
-            'controller_name' => 'CompteController',
+        return $this->render('user/index.html.twig', [
+            'controller_name' => 'UserController',
         ]);
     }
 
@@ -36,59 +36,59 @@ class CompteController extends AbstractController
 
     
     /**
-     * @Route("/addCompte", name="display_compte")
+     * @Route("/addUser", name="display_user")
      */
-    public function addCompte(Request $request)
+    public function addUser(Request $request)
     {
         
-        $compte= new Compte();
-        $form = $this->createForm(CompteType::class,$compte);
+        $user= new User();
+        $form = $this->createForm(UserType::class,$user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $em = $this->getDoctrine()->getManager();
-            $em->persist($compte);//ajout
+            $em->persist($user);//ajout
             $em->flush();
 
-            return $this->redirectToRoute('display_compte');
+            return $this->redirectToRoute('display_user');
 
         }
         return $this->render('compte/createCompte.html.twig',['f'=>$form->createView()]);
 
     }
      /**
-     * @Route("/listCompte", name="listCompte")
+     * @Route("/listUser", name="listUser")
      */
     public function list()
     {
-        $compte= $this->getDoctrine()->getRepository(Compte::class)->findAll();
-        return $this->render("compte/list.html.twig",array("tabclass"=>$compte));
+        $user= $this->getDoctrine()->getRepository(User::class)->findAll();
+        return $this->render("compte/list.html.twig",array("tabclass"=>$user));
     }
     /**
-     * @Route("/deleteCompte/{id}", name="suppCompte")
+     * @Route("/deleteUser/{id}", name="suppUser")
      */
     public function delete($id)
     {
-        $compte= $this->getDoctrine()->getRepository(Compte::class)->find($id);
+        $user= $this->getDoctrine()->getRepository(User::class)->find($id);
         $em = $this->getDoctrine()->getManager();
-        $em->remove($compte);
+        $em->remove($user);
         $em->flush();
-        return $this->redirectToRoute("listCompte");
+        return $this->redirectToRoute("listUser");
     }
      /**
-     * @Route("/updateCompte/{id}", name="updateCompte")
+     * @Route("/updateUser/{id}", name="updateUser")
      */
-    public function update(Request $request,CompteRepository $repository,$id)
+    public function update(Request $request,UserRepository $repository,$id)
     {
-        //$compte= $this->getDoctrine()->getRepository(Compte::class)->find($id)
-        $compte= $repository->find($id);
-        $form= $this->createForm(CompteType::class,$compte);
+        //$user= $this->getDoctrine()->getRepository(User::class)->find($id)
+        $user= $repository->find($id);
+        $form= $this->createForm(UserType::class,$user);
         $form->handleRequest($request);
         if($form->isSubmitted()){
             $em= $this->getDoctrine()->getManager();
             $em->flush();
-            return $this->redirectToRoute("listCompte");
+            return $this->redirectToRoute("listUser");
         }
-        return $this->render("compte/update.html.twig",array("compte"=>$compte,"formCompte"=>$form->createView()));
+        return $this->render("compte/update.html.twig",array("user"=>$user,"formUser"=>$form->createView()));
     }
 
 }
