@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block crud %}
+
+<div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+              {{ form_start(f,{attr:{novalidate:'novalidate'}}) }}
+                <div class="card-body">
+                  <h4 class="card-title">Ajouter un Compte</h4>
+                  <p class="card-description">
+                   
+                  </p>
+                  <form class="forms-sample">
+                    <div class="form-group">
+                      <label for="exampleInputUsername1">Id client</label>
+                       {{ form_widget(f.Id_client,{'attr':{'class':'form-control','placeholder': 'Id client'}}) }}
+                       {{ form_errors(f.Id_client,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputUsername1">Nom</label>
+                       {{ form_widget(f.Nom,{'attr':{'class':'form-control','placeholder': 'Nom'}}) }}
+                       {{ form_errors(f.Nom,{'attr':{'class':'text-danger'}}) }}
+                    </div><div class="form-group">
+                      <label for="exampleInputUsername1">Prenom</label>
+                       {{ form_widget(f.Prenom,{'attr':{'class':'form-control','placeholder': 'Prenom'}}) }}
+                       {{ form_errors(f.Prenom,{'attr':{'class':'text-danger'}}) }}
+                    </div><div class="form-group">
+                      <label for="exampleInputUsername1">Date naissance</label>
+                       {{ form_widget(f.Date_naissance,{'attr':{'class':'form-control','placeholder': 'Date naissance'}}) }}
+                       {{ form_errors(f.Date_naissance,{'attr':{'class':'text-danger'}}) }}
+                    </div><div class="form-group">
+                      <label for="exampleInputUsername1">Tel</label>
+                       {{ form_widget(f.Tel,{'attr':{'class':'form-control','placeholder': 'Tel'}}) }}
+                       {{ form_errors(f.Tel,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+                    </div><div class="form-group">
+                      <label for="exampleInputUsername1">Email</label>
+                       {{ form_widget(f.Email,{'attr':{'class':'form-control','placeholder': 'Email'}}) }}
+                       {{ form_errors(f.Email,{'attr':{'class':'text-danger'}}) }}
+                    </div>
+                    
+                   
+                    
+{{ form_end(f)}}
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            {% endblock %}
