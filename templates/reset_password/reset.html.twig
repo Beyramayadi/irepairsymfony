@@ -1,0 +1,21 @@
+{% extends 'baseines.html.twig' %}
+
+{% block title %}Reset your password
+{% endblock %}
+
+{% block body %}
+	<h1>Reset your password</h1>
+	{{ form_start(resetForm) }}
+	<div class="col-md-6">
+		<div class="form-group row">
+			<label class="col-sm-3 col-form-label">Email</label>
+			<div class="col-sm-9">
+				{{ form_widget(resetForm.plainPassword) }}
+
+			</div>
+		</div>
+	</div>
+	{# {{ form_row(resetForm.plainPassword) }} #}
+	<button class="btn btn-primary">Reset password</button>
+	{{ form_end(resetForm) }}
+{% endblock %}

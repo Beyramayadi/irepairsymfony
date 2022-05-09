@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 class PoleController extends AbstractController
 {
     /**
-     * @Route("/", name="base")
+     * @Route("/nader", name="base")
      */
     public function base(): Response
     {

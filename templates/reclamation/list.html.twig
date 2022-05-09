@@ -1,0 +1,63 @@
+{% extends 'baseines.html.twig' %}
+{% block body %}
+
+	{% if tabclass is empty %}
+		<h4>Pas de classe</h4>
+	{% else %}
+		<div class="col-lg-6 grid-margin stretch-card">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">Table Reclamation</h4>
+
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>id</th>
+									<th>Important</th>
+									<th>idclient</th>
+									<th>reclamation</th>
+									<th>datereclamation</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+
+								{% for reclamation in tabclass %}
+									<tr>
+										<td>{{ reclamation.id}}</td>
+										<td>
+										{% if reclamation.Important %}
+											<div class="col-sm-6 col-md-4 col-lg-3">
+												<i class="mdi mdi-star"></i>
+												
+											</div>
+										{% endif %}
+										</td>
+										<td>{{ reclamation.idclient}}</td>
+										<td>{{ reclamation.reclamation|upper }}</td>
+										<td>{{ reclamation.datereclamation|date('Y-m-d')}}</td>
+										<td>
+											<a href="{{ path('suppReclamation',{'id':reclamation.id}) }}">Delete</a>
+											<a href="{{ path('updateReclamation',{'id':reclamation.id}) }}">Edit</a>
+											<a href="{{ path('impoReclamation',{'id':reclamation.id}) }}">Important</a>
+										</td>
+
+									</tr>
+								{% endfor %}
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+	<div class="template-demo">
+		<a href="/addReclamation">
+			<button type="button" class="btn btn-primary btn-rounded btn-fw">Ajout Reclamation</button>
+		</a>
+		{{ tabclass|length }}
+	</div>
+
+{% endblock %}
